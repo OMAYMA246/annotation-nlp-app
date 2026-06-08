@@ -1,0 +1,98 @@
+/* AnnotPlatform — styles globaux */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+/* Cards */
+.card {
+    border-radius: 0.75rem;
+    transition: box-shadow 0.2s;
+}
+.card:hover {
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.1) !important;
+}
+.card-header {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    font-weight: 600;
+}
+
+/* Texte boxes dans l'interface d'annotation */
+.texte-box {
+    background: #fdfdfe !important;
+    border-left: 4px solid #0d6efd !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    min-height: 80px;
+    transition: border-color 0.2s;
+}
+.texte-box:nth-child(even) {
+    border-left-color: #198754 !important;
+}
+
+/* Boutons de classe (radio déguisés) */
+.classe-btn {
+    border-radius: 2rem !important;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 120px;
+    transition: all 0.15s;
+}
+.btn-check:checked + .classe-btn {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+/* Annotation card */
+.annotation-card {
+    border-radius: 1rem !important;
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.08) !important;
+}
+
+/* Progress bar arrondie */
+.progress {
+    border-radius: 1rem;
+}
+.progress-bar {
+    border-radius: 1rem;
+    transition: width 0.5s ease;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.75em;
+}
+
+/* Tableaux */
+.table > tbody > tr {
+    vertical-align: middle;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+
+/* Alerte flash */
+.alert {
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Hint raccourcis clavier */
+.keyboard-hint {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+}

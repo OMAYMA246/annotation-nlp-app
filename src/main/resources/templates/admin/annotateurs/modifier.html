@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Modifier Annotateur')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+<div class="container mt-4" style="max-width:500px">
+    <div class="d-flex align-items-center mb-4">
+        <a th:href="@{/admin/annotateurs}" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+        <h2 class="fw-bold mb-0">Modifier l'annotateur</h2>
+    </div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <form th:action="@{/admin/annotateurs/{id}/modifier(id=${annotateur.id})}" method="post">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Nom *</label>
+                    <input type="text" name="nom" class="form-control" th:value="${annotateur.nom}" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Prénom *</label>
+                    <input type="text" name="prenom" class="form-control" th:value="${annotateur.prenom}" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Login *</label>
+                    <input type="text" name="login" class="form-control" th:value="${annotateur.login}" required/>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Nouveau mot de passe</label>
+                    <input type="password" name="password" class="form-control" placeholder="Laisser vide pour ne pas changer"/>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4">Enregistrer</button>
+                    <a th:href="@{/admin/annotateurs}" class="btn btn-outline-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: scripts}"></footer>
+</body>
+</html>

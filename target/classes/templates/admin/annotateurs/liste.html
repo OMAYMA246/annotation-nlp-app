@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Annotateurs')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-people me-2 text-primary"></i>Annotateurs</h2>
+        <a th:href="@{/admin/annotateurs/nouveau}" class="btn btn-primary">
+            <i class="bi bi-person-plus me-2"></i>Ajouter
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0" th:if="${!annotateurs.empty}">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Login</th>
+                        <th>Statut</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="a : ${annotateurs}">
+                        <td>
+                            <i class="bi bi-person-circle text-primary me-2"></i>
+                            <span th:text="${a.prenom + ' ' + a.nom}"></span>
+                        </td>
+                        <td><code th:text="${a.login}"></code></td>
+                        <td>
+                            <span class="badge" th:classappend="${a.active} ? 'bg-success' : 'bg-danger'"
+                                  th:text="${a.active} ? 'Actif' : 'Inactif'"></span>
+                        </td>
+                        <td class="text-end">
+                            <div class="d-flex gap-1 justify-content-end">
+                                <a th:href="@{/admin/annotateurs/{id}/stats(id=${a.id})}"
+                                   class="btn btn-sm btn-outline-info" title="Stats">
+                                    <i class="bi bi-bar-chart"></i>
+                                </a>
+                                <a th:href="@{/admin/annotateurs/{id}/modifier(id=${a.id})}"
+                                   class="btn btn-sm btn-outline-primary" title="Modifier">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form th:action="@{/admin/annotateurs/{id}/toggle(id=${a.id})}" method="post">
+                                    <button class="btn btn-sm btn-outline-warning" type="submit" title="Activer/Désactiver">
+                                        <i class="bi bi-toggle-on"></i>
+                                    </button>
+                                </form>
+                                <form th:action="@{/admin/annotateurs/{id}/supprimer(id=${a.id})}" method="post"
+                                      onsubmit="return confirm('Supprimer cet annotateur ?')">
+                                    <button class="btn btn-sm btn-outline-danger" type="submit" title="Supprimer">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${annotateurs.empty}" class="text-center py-5 text-muted">
+                <i class="bi bi-people" style="font-size:3rem"></i>
+                <p class="mt-3">Aucun annotateur. Ajoutez-en un !</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: scripts}"></footer>
+</body>
+</html>

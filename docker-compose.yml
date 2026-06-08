@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+
+  # ── Base de données MySQL ──────────────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: annotation_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: annotation_db
+      MYSQL_USER: annotation_user
+      MYSQL_PASSWORD: annotation_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "annotation_user", "-pannotation_pass"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ── Application Spring Boot ────────────────────────────────────────────────
+  app:
+    build: .
+    container_name: annotation_app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/annotation_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: annotation_user
+      SPRING_DATASOURCE_PASSWORD: annotation_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
