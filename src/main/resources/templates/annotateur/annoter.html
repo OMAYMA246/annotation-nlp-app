@@ -5,45 +5,52 @@
 <nav th:replace="~{fragments/layout :: navbar}"></nav>
 <div th:replace="~{fragments/layout :: alerts}"></div>
 
-<div class="container mt-4" style="max-width:800px">
+<div class="container mt-4" style="max-width:860px">
 
     <!-- Barre de progression -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted small">
-            Exemple <strong th:text="${positionActuelle}"></strong>
-            sur <strong th:text="${totalTaches}"></strong>
-        </span>
-        <span class="badge bg-primary" th:text="${dataset.nomDataset}"></span>
-    </div>
-    <div class="progress mb-4" style="height:8px">
-        <div class="progress-bar bg-primary"
-             th:style="'width:' + ${totalTaches > 0 ? (positionActuelle * 100 / totalTaches) : 0} + '%'"></div>
+    <div class="card border-0 shadow-sm mb-3 px-4 py-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-primary fs-6" th:text="${dataset.nomDataset}"></span>
+                <span class="text-muted small">
+                    Exemple <strong th:text="${positionActuelle}"></strong>
+                    / <strong th:text="${totalTaches}"></strong>
+                </span>
+            </div>
+            <a th:href="@{/annotateur/taches}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-grid me-1"></i>Toutes mes tâches
+            </a>
+        </div>
+        <div class="progress" style="height:8px; border-radius:1rem;">
+            <div class="progress-bar bg-primary"
+                 style="border-radius:1rem; transition: width 0.5s ease;"
+                 th:style="'width:' + ${totalTaches > 0 ? (positionActuelle * 100 / totalTaches) : 0} + '%'"></div>
+        </div>
     </div>
 
     <!-- Carte principale -->
     <div class="card border-0 shadow annotation-card">
-        <div class="card-body p-4">
+        <div class="card-body p-4 p-md-5">
 
-            <!-- En-tête dataset -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold mb-0 text-primary" th:text="${dataset.nomDataset}"></h5>
-                <span class="badge bg-secondary" th:text="'Exemple #' + ${exemple.id}"></span>
+            <!-- En-tête -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0">
+                    # Exemple <span th:text="${exemple.id}"></span>
+                </h5>
+                <span th:if="${annotationExistante != null}"
+                      class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                    <i class="bi bi-check-circle me-1"></i>Déjà annoté
+                </span>
             </div>
 
-            <hr/>
-
-            <!--
-                AFFICHAGE DYNAMIQUE DES TEXTES
-                Selon le nombre d'éléments dans exemple.textes (List<String>) :
-                - 1 texte  → tâche mono (Sentiment, Classification)
-                - 2 textes → tâche bi-texte (NLI, Similarité)
-                - N textes → affichage générique numéroté
-            -->
+            <!-- ===== AFFICHAGE DES TEXTES ===== -->
 
             <!-- CAS 1 : Mono-texte -->
             <div th:if="${exemple.textes.size() == 1}" class="mb-4">
-                <label class="form-label text-muted small text-uppercase fw-semibold">Texte à annoter</label>
-                <div class="texte-box p-3 rounded bg-white border">
+                <label class="form-label text-muted small text-uppercase fw-semibold letter-spacing-1">
+                    <i class="bi bi-text-paragraph me-1"></i>Texte à annoter
+                </label>
+                <div class="texte-box p-4 rounded-3 bg-white border">
                     <p class="mb-0 fs-6 lh-lg" th:text="${exemple.textes[0]}"></p>
                 </div>
             </div>
@@ -53,96 +60,108 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label text-muted small text-uppercase fw-semibold">
-                            <i class="bi bi-1-circle-fill text-primary me-1"></i>
-                            Texte 1
+                            <i class="bi bi-1-circle-fill text-primary me-1"></i>Texte 1
                             <span class="text-info" th:if="${dataset.nombreTextesParExemple == 2}">(Premise)</span>
                         </label>
-                        <div class="texte-box p-3 rounded bg-white border h-100">
+                        <div class="texte-box p-3 rounded-3 bg-white border h-100">
                             <p class="mb-0 fs-6 lh-lg" th:text="${exemple.textes[0]}"></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label text-muted small text-uppercase fw-semibold">
-                            <i class="bi bi-2-circle-fill text-success me-1"></i>
-                            Texte 2
+                            <i class="bi bi-2-circle-fill text-success me-1"></i>Texte 2
                             <span class="text-info" th:if="${dataset.nombreTextesParExemple == 2}">(Hypothesis)</span>
                         </label>
-                        <div class="texte-box p-3 rounded bg-white border h-100">
+                        <div class="texte-box p-3 rounded-3 bg-white border h-100">
                             <p class="mb-0 fs-6 lh-lg" th:text="${exemple.textes[1]}"></p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- CAS N : Plus de 2 textes (générique) -->
+            <!-- CAS N : Plus de 2 textes -->
             <div th:if="${exemple.textes.size() > 2}" class="mb-4">
                 <div class="mb-3" th:each="texte, iter : ${exemple.textes}">
                     <label class="form-label text-muted small text-uppercase fw-semibold">
                         Texte <span th:text="${iter.index + 1}"></span>
                     </label>
-                    <div class="texte-box p-3 rounded bg-white border">
+                    <div class="texte-box p-3 rounded-3 bg-white border">
                         <p class="mb-0 fs-6 lh-lg" th:text="${texte}"></p>
                     </div>
                 </div>
             </div>
 
-            <hr/>
+            <!-- ===== SÉPARATEUR + CHOIX DE CLASSE ===== -->
+            <div class="d-flex align-items-center gap-3 my-4">
+                <hr class="flex-grow-1"/>
+                <span class="text-muted small text-uppercase fw-semibold text-nowrap">
+                    <i class="bi bi-tag me-1"></i>Choisir une classe
+                </span>
+                <hr class="flex-grow-1"/>
+            </div>
 
-            <!-- Choix de la classe -->
             <form th:action="@{/annotateur/annoter/{id}(id=${exemple.id})}" method="post" id="annotForm">
                 <div class="mb-4">
-                    <label class="form-label fw-semibold fs-5">
-                        <i class="bi bi-tag me-2 text-primary"></i>Votre annotation :
-                    </label>
-
-                    <div class="row g-2 mt-1">
-                        <div class="col-auto" th:each="cp : ${classesPossibles}">
-                            <input type="radio" class="btn-check" name="classeChoisie"
+                    <!-- Boutons de classe : chaque ClassePossible = 1 bouton -->
+                    <div class="d-flex flex-wrap gap-2 justify-content-start">
+                        <div th:each="cp, iter : ${classesPossibles}">
+                            <input type="radio"
+                                   class="btn-check"
+                                   name="classeChoisie"
                                    th:id="'classe_' + ${cp.id}"
                                    th:value="${cp.libelleClasse}"
                                    th:checked="${annotationExistante != null and annotationExistante.classeChoisie == cp.libelleClasse}"
                                    required/>
-                            <label class="btn btn-outline-primary btn-lg px-4 py-2 classe-btn"
-                                   th:for="'classe_' + ${cp.id}"
-                                   th:text="${cp.libelleClasse}">
+                            <label class="btn btn-outline-primary btn-lg px-4 py-2 classe-btn position-relative"
+                                   th:for="'classe_' + ${cp.id}">
+                                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-dark"
+                                      style="font-size:0.65rem; padding:3px 6px;"
+                                      th:text="${iter.index + 1}"></span>
+                                <span th:text="${cp.libelleClasse}"></span>
                             </label>
                         </div>
+                    </div>
+
+                    <!-- Hint raccourcis clavier -->
+                    <div class="keyboard-hint mt-3 d-flex align-items-center gap-1 flex-wrap">
+                        <i class="bi bi-keyboard me-1"></i>
+                        Utilisez les touches
+                        <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> ...
+                        pour sélectionner,
+                        <kbd>Entrée</kbd> pour valider et passer au suivant.
                     </div>
                 </div>
 
                 <!-- Annotation existante -->
                 <div th:if="${annotationExistante != null}" class="alert alert-success py-2 mb-3">
                     <i class="bi bi-check-circle me-2"></i>
-                    Déjà annoté :
-                    <strong th:text="${annotationExistante.classeChoisie}"></strong>
+                    Déjà annoté : <strong th:text="${annotationExistante.classeChoisie}"></strong>
                     — vous pouvez modifier.
                 </div>
 
-                <!-- Boutons navigation -->
-                <div class="d-flex gap-2 flex-wrap">
-                    <!-- Précédent -->
+                <hr class="my-4"/>
+
+                <!-- Boutons de navigation -->
+                <div class="d-flex gap-2 flex-wrap align-items-center">
                     <a th:href="@{/annotateur/annoter/{id}(id=${precedentId})}"
                        th:if="${precedentId != null}"
-                       class="btn btn-outline-secondary">
+                       class="btn btn-outline-secondary btn-lg rounded-pill px-4">
                         <i class="bi bi-chevron-left me-1"></i>Précédent
                     </a>
-                    <span th:if="${precedentId == null}" class="btn btn-outline-secondary disabled">
+                    <span th:if="${precedentId == null}"
+                          class="btn btn-outline-secondary btn-lg rounded-pill px-4 disabled">
                         <i class="bi bi-chevron-left me-1"></i>Précédent
                     </span>
 
-                    <!-- Sauvegarder seulement -->
-                    <button type="submit" name="suivant" value="false" class="btn btn-success px-4">
+                    <button type="submit" name="suivant" value="false"
+                            class="btn btn-success btn-lg rounded-pill px-4">
                         <i class="bi bi-check-lg me-1"></i>Sauvegarder
                     </button>
 
-                    <!-- Sauvegarder + Suivant -->
-                    <button type="submit" name="suivant" value="true" class="btn btn-primary px-4">
+                    <button type="submit" name="suivant" value="true"
+                            class="btn btn-primary btn-lg rounded-pill px-4">
                         Valider &amp; Suivant <i class="bi bi-chevron-right ms-1"></i>
                     </button>
-
-                    <a th:href="@{/annotateur/taches}" class="btn btn-outline-secondary ms-auto">
-                        <i class="bi bi-list-task me-1"></i>Mes tâches
-                    </a>
                 </div>
             </form>
         </div>
@@ -151,24 +170,30 @@
 
 <footer th:replace="~{fragments/layout :: scripts}"></footer>
 <script>
-// Raccourcis clavier : touches 1,2,3... pour sélectionner la classe
-document.addEventListener('keydown', function(e) {
-    const num = parseInt(e.key);
-    if (num >= 1 && num <= 9) {
-        const radios = document.querySelectorAll('input[name="classeChoisie"]');
-        if (radios[num - 1]) {
-            radios[num - 1].checked = true;
-            radios[num - 1].dispatchEvent(new Event('change'));
+    // Raccourcis clavier : touches 1,2,3... pour sélectionner la classe
+    document.addEventListener('keydown', function(e) {
+        // Ignorer si on est dans un champ de saisie
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        const num = parseInt(e.key);
+        if (num >= 1 && num <= 9) {
+            const radios = document.querySelectorAll('input[name="classeChoisie"]');
+            if (radios[num - 1]) {
+                radios[num - 1].checked = true;
+                radios[num - 1].dispatchEvent(new Event('change'));
+                // Feedback visuel : highlight du label
+                radios[num - 1].nextElementSibling.classList.add('shadow');
+                setTimeout(() => radios[num - 1].nextElementSibling.classList.remove('shadow'), 300);
+            }
         }
-    }
-    // Entrée = valider et suivant
-    if (e.key === 'Enter' && !e.shiftKey) {
-        const checked = document.querySelector('input[name="classeChoisie"]:checked');
-        if (checked) {
-            document.querySelector('button[value="true"]').click();
+        // Entrée = valider et suivant
+        if (e.key === 'Enter' && !e.shiftKey) {
+            const checked = document.querySelector('input[name="classeChoisie"]:checked');
+            if (checked) {
+                document.querySelector('button[value="true"]').click();
+            }
         }
-    }
-});
+    });
 </script>
 </body>
 </html>
