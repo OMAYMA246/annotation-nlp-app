@@ -1,10 +1,13 @@
-﻿# Maven - ne jamais committer target/
-target/
+# Maven - garder seulement le jar
+target/classes/
+target/generated-sources/
+target/maven-archiver/
+target/maven-status/
+target/*.jar.original
 
 # IDE
 .idea/
 *.iml
-.vscode/
 
 # OS
 .DS_Store
