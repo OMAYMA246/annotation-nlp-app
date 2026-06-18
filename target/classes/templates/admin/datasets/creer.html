@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Créer un Dataset')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<div class="container mt-4" style="max-width:700px">
+    <div class="d-flex align-items-center mb-4">
+        <a th:href="@{/admin/datasets}" class="btn btn-outline-secondary me-3">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+        <h2 class="fw-bold mb-0"><i class="bi bi-database-add me-2 text-primary"></i>Nouveau Dataset</h2>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+            <form th:action="@{/admin/datasets/nouveau}" method="post" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Nom du dataset *</label>
+                    <input type="text" name="nom" class="form-control" required placeholder="Ex: NLI-Français, SentimentAr..."/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Description</label>
+                    <textarea name="description" class="form-control" rows="3"
+                              placeholder="Description optionnelle du dataset et de la tâche..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Date limite</label>
+                    <input type="date" name="dateLimite" class="form-control"/>
+                    <div class="form-text">Optionnelle — affichée aux annotateurs dans leur liste de tâches.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Type de tâche *</label>
+                    <select name="nombreTextesParExemple" class="form-select" id="typeSelect" required>
+                        <option value="1">Mono-texte (Sentiment Analysis, Classification...)</option>
+                        <option value="2">Bi-texte (NLI : Premise/Hypothesis, Similarité...)</option>
+                        <option value="3">Tri-texte (autres tâches)</option>
+                    </select>
+                    <div class="form-text mt-1">
+                        <span id="typeHelp" class="text-info">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Chaque exemple contiendra <strong>1 texte</strong>.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Classes possibles *</label>
+                    <input type="text" name="classes" class="form-control" required
+                           placeholder="positive;negative ou entails;contradiction;neutral"/>
+                    <div class="form-text">Séparez les classes par <strong>;</strong></div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Fichier de données *</label>
+                    <input type="file" name="fichier" class="form-control" required accept=".csv,.json"/>
+                    <div class="form-text">
+                        Formats acceptés : <strong>CSV</strong> ou <strong>JSON</strong><br/>
+                        CSV : colonnes <code>texte1</code> (et <code>texte2</code> si bi-texte)<br/>
+                        JSON : tableau d'objets avec champ <code>textes: ["...", "..."]</code>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-cloud-upload me-2"></i>Créer le dataset
+                    </button>
+                    <a th:href="@{/admin/datasets}" class="btn btn-outline-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/layout :: scripts}"></footer>
+<script>
+document.getElementById('typeSelect').addEventListener('change', function() {
+    const n = this.value;
+    const labels = {
+        '1': '1 texte (ex: sentiment à analyser)',
+        '2': '2 textes (ex: Premise + Hypothesis pour NLI)',
+        '3': '3 textes'
+    };
+    document.getElementById('typeHelp').innerHTML =
+        '<i class="bi bi-info-circle me-1"></i>Chaque exemple contiendra <strong>' + labels[n] + '</strong>.';
+});
+</script>
+</body>
+</html>

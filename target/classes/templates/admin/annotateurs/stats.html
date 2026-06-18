@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Stats Annotateur')}"></head>
+<body class="bg-light">
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+<div class="container mt-4" style="max-width:700px">
+    <div class="d-flex align-items-center mb-4">
+        <a th:href="@{/admin/annotateurs}" class="btn btn-outline-secondary me-3">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+        <div>
+            <h2 class="fw-bold mb-0">
+                <i class="bi bi-bar-chart me-2 text-primary"></i>Statistiques
+            </h2>
+            <small class="text-muted" th:text="${annotateur.prenom + ' ' + annotateur.nom}"></small>
+        </div>
+    </div>
+    <div class="row g-3 mb-4">
+        <div class="col-sm-4">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-primary" th:text="${stats.totalTaches}">0</div>
+                <div class="text-muted small">Total tâches</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-success" th:text="${stats.tachesTerminees}">0</div>
+                <div class="text-muted small">Terminées</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-warning" th:text="${stats.tachesRestantes}">0</div>
+                <div class="text-muted small">Restantes</div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <div class="small text-muted mb-2">Progression globale</div>
+            <div class="progress mb-2" style="height:16px">
+                <div class="progress-bar bg-success"
+                     th:style="'width:' + ${#numbers.formatDecimal(stats.progression, 0, 0)} + '%'"></div>
+            </div>
+            <div th:text="${#numbers.formatDecimal(stats.progression, 0, 1)} + '%'" class="fw-semibold"></div>
+        </div>
+    </div>
+    <div class="card border-0 shadow-sm" th:if="${!stats.distribution.empty}">
+        <div class="card-header fw-semibold bg-white border-bottom">
+            <i class="bi bi-pie-chart me-2"></i>Distribution des annotations
+        </div>
+        <div class="card-body">
+            <div th:each="entry : ${stats.distribution}" class="d-flex justify-content-between mb-2">
+                <span class="badge bg-primary" th:text="${entry.key}"></span>
+                <span class="fw-bold" th:text="${entry.value}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: scripts}"></footer>
+</body>
+</html>
