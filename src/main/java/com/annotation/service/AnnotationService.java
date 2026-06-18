@@ -58,6 +58,50 @@ public class AnnotationService {
     }
 
     /**
+     * Regroupe les tâches d'un annotateur par dataset (UC6 de la maquette) :
+     * pour chaque dataset, donne le nombre de tâches assignées à cet annotateur,
+     * son avancement personnel, et la date limite du dataset.
+     */
+    public List<ResumeTachesParDataset> getTachesParDataset(Utilisateur annotateur) {
+        List<Tache> taches = tacheRepository.findByAnnotateur(annotateur);
+
+        Map<Dataset, List<Tache>> parDataset = taches.stream()
+            .collect(Collectors.groupingBy(Tache::getDataset, LinkedHashMap::new, Collectors.toList()));
+
+        List<ResumeTachesParDataset> resultat = new ArrayList<>();
+        for (Map.Entry<Dataset, List<Tache>> entry : parDataset.entrySet()) {
+            Dataset dataset = entry.getKey();
+            List<Tache> tachesDataset = entry.getValue();
+            long terminees = tachesDataset.stream().filter(Tache::isTerminee).count();
+            long total = tachesDataset.size();
+            double progression = total > 0 ? (double) terminees / total * 100 : 0;
+
+            // Premier exemple non terminé, pour le bouton "Travailler"
+            Long premierExempleId = tachesDataset.stream()
+                .filter(t -> !t.isTerminee())
+                .map(t -> t.getExemple().getId())
+                .findFirst()
+                .orElseGet(() -> tachesDataset.isEmpty() ? null : tachesDataset.get(0).getExemple().getId());
+
+            resultat.add(new ResumeTachesParDataset(
+                dataset, total, terminees, progression, premierExempleId
+            ));
+        }
+        return resultat;
+    }
+
+    /**
+     * Résumé des tâches d'un annotateur pour un dataset donné (ligne du tableau UC6).
+     */
+    public record ResumeTachesParDataset(
+        Dataset dataset,
+        long totalTaches,
+        long tachesTerminees,
+        double progression,
+        Long premierExempleNonTermineId
+    ) {}
+
+    /**
      * Calcul du Cohen's Kappa pour un dataset.
      * Simplifié pour 2 annotateurs; pour N annotateurs → Fleiss Kappa.
      */

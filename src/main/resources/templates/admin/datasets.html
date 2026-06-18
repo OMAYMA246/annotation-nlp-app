@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Datasets')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+
+<div class="page-wrapper">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-0" style="font-size:1.4rem">
+                <i class="bi bi-database me-2" style="color:#3b82f6"></i>Datasets
+            </h2>
+            <p class="text-muted mb-0" style="font-size:.85rem">Gérez vos jeux de données d'annotation</p>
+        </div>
+        <a th:href="@{/admin/datasets/nouveau}" class="ap-btn ap-btn-primary">
+            <i class="bi bi-plus-lg"></i>Nouveau dataset
+        </a>
+    </div>
+
+    <!-- Vide -->
+    <div th:if="${datasets.empty}" class="ap-card text-center py-5">
+        <i class="bi bi-database-x" style="font-size:3rem;color:#cbd5e1"></i>
+        <p class="fw-semibold mt-3 mb-1">Aucun dataset</p>
+        <p class="text-muted mb-3" style="font-size:.875rem">Créez votre premier dataset pour commencer</p>
+        <a th:href="@{/admin/datasets/nouveau}" class="ap-btn ap-btn-primary">
+            <i class="bi bi-plus-lg"></i>Créer un dataset
+        </a>
+    </div>
+
+    <!-- Grille de cards -->
+    <div class="row g-3" th:if="${!datasets.empty}">
+        <div class="col-md-4" th:each="ds : ${datasets}">
+            <div class="ap-card h-100">
+                <!-- Accent couleur selon type -->
+                <div class="ds-card-accent"
+                     th:style="${ds.nombreTextesParExemple == 1} ? 'background:linear-gradient(90deg,#3b82f6,#6366f1)' :
+                                (${ds.nombreTextesParExemple == 2} ? 'background:linear-gradient(90deg,#8b5cf6,#ec4899)' :
+                                'background:linear-gradient(90deg,#10b981,#06b6d4)')"></div>
+
+                <div class="ds-card-body">
+                    <div class="ds-card-name" th:text="${ds.nomDataset}"></div>
+                    <div class="ds-card-desc"
+                         th:text="${ds.description != null ? #strings.abbreviate(ds.description, 80) : 'Pas de description'}"></div>
+
+                    <!-- Progress -->
+                    <div class="mb-3"
+                         th:with="pct=${datasetsStats != null and datasetsStats[ds.id] != null ? datasetsStats[ds.id] : 0}">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span style="font-size:.78rem;color:#64748b">Progression</span>
+                            <span th:text="${pct} + '%'"
+                                  th:style="${pct >= 100} ? 'color:#22c55e;font-weight:600;font-size:.78rem' :
+                                             (${pct >= 50} ? 'color:#f59e0b;font-weight:600;font-size:.78rem' :
+                                             'color:#94a3b8;font-weight:600;font-size:.78rem')"></span>
+                        </div>
+                        <div class="ap-progress">
+                            <div class="ap-progress-bar"
+                                 th:style="'width:' + ${pct} + '%;background:' + (${pct >= 100} ? '#22c55e' : (${pct >= 50} ? '#f59e0b' : '#3b82f6'))"></div>
+                        </div>
+                    </div>
+
+                    <!-- Badges -->
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="ap-badge ap-badge-blue">
+                            <i class="bi bi-file-text" style="font-size:.7rem"></i>
+                            <span th:text="${ds.exemples.size()}"></span> ex.
+                        </span>
+                        <span class="ap-badge ap-badge-gray">
+                            <i class="bi bi-people" style="font-size:.7rem"></i>
+                            <span th:text="${ds.annotateurs.size()}"></span>
+                        </span>
+                        <span class="ap-badge"
+                              th:classappend="${ds.nombreTextesParExemple > 1} ? 'ap-badge-yellow' : 'ap-badge-green'"
+                              th:text="${ds.nombreTextesParExemple == 1} ? 'Mono-texte' : ds.nombreTextesParExemple + ' textes'">
+                        </span>
+                        <span th:if="${ds.dateLimite != null}" class="ap-badge ap-badge-red">
+                            <i class="bi bi-calendar-event" style="font-size:.7rem"></i>
+                            <span th:text="${#temporals.format(ds.dateLimite, 'dd/MM')}"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Footer actions -->
+                <div class="ds-card-footer">
+                    <a th:href="@{/admin/datasets/{id}(id=${ds.id})}" class="ap-btn ap-btn-outline ap-btn-sm">
+                        <i class="bi bi-eye"></i>Détails
+                    </a>
+                    <a th:href="@{/admin/datasets/{id}/affecter(id=${ds.id})}" class="ap-btn ap-btn-success ap-btn-sm">
+                        <i class="bi bi-person-plus"></i>Affecter
+                    </a>
+                    <form th:action="@{/admin/datasets/{id}/supprimer(id=${ds.id})}" method="post"
+                          class="ms-auto mb-0" onsubmit="return confirm('Supprimer ce dataset ?')">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button class="ap-btn ap-btn-danger ap-btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments/layout :: scripts}"></footer>
+</body>
+</html>

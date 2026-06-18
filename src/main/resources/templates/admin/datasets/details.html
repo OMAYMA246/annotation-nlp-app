@@ -6,12 +6,16 @@
 <div th:replace="~{fragments/layout :: alerts}"></div>
 
 <div class="container-fluid mt-4">
-    <div class="d-flex align-items-center mb-4">
+    <div class="d-flex align-items-center mb-4 flex-wrap gap-2">
         <a th:href="@{/admin/datasets}" class="btn btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
         <h2 class="fw-bold mb-0" th:text="${dataset.nomDataset}"></h2>
         <span class="badge ms-3"
               th:classappend="${dataset.nombreTextesParExemple > 1} ? 'bg-warning text-dark' : 'bg-success'"
               th:text="${dataset.nombreTextesParExemple == 1} ? 'Mono-texte' : dataset.nombreTextesParExemple + ' textes/exemple'">
+        </span>
+        <span th:if="${dataset.dateLimite != null}" class="badge bg-secondary">
+            <i class="bi bi-calendar-event me-1"></i>
+            Date limite : <span th:text="${#temporals.format(dataset.dateLimite, 'dd/MM/yyyy')}"></span>
         </span>
     </div>
 
@@ -84,6 +88,7 @@
                     <a th:href="@{/admin/datasets/{id}/export/csv(id=${dataset.id})}" class="btn btn-outline-success">
                         <i class="bi bi-file-csv me-1"></i>CSV
                     </a>
+                    <a th:href="@{/admin/datasets/{id}/ml(id=${dataset.id})}" class="btn btn-outline-primary"><i class="bi bi-cpu me-1"></i>ML</a>
                     <a th:href="@{/admin/datasets/{id}/export/json(id=${dataset.id})}" class="btn btn-outline-info">
                         <i class="bi bi-filetype-json me-1"></i>JSON
                     </a>

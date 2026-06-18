@@ -3,6 +3,7 @@ package com.annotation.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +30,12 @@ public class Dataset {
 
     @Column(nullable = false)
     private LocalDateTime dateCreation;
+
+    /**
+     * Date limite pour terminer l'annotation de ce dataset (optionnelle).
+     * Affichée dans la liste des tâches de l'annotateur (UC6 de la maquette).
+     */
+    private LocalDate dateLimite;
 
     /**
      * Nombre de textes par exemple :

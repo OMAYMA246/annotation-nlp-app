@@ -32,11 +32,13 @@ public class AdminAnnotateurController {
             @RequestParam String nom,
             @RequestParam String prenom,
             @RequestParam String login,
-            @RequestParam String password,
             RedirectAttributes ra) {
         try {
-            utilisateurService.creerAnnotateur(nom, prenom, login, password);
-            ra.addFlashAttribute("success", "Annotateur créé avec succès !");
+            var resultat = utilisateurService.creerAnnotateur(nom, prenom, login);
+            ra.addFlashAttribute("success",
+                "Annotateur créé avec succès ! Identifiants — Login : " + resultat.utilisateur().getLogin()
+                    + " / Mot de passe : " + resultat.motDePasseClair()
+                    + " (notez-le, il ne sera plus affiché).");
         } catch (Exception e) {
             ra.addFlashAttribute("error", e.getMessage());
         }

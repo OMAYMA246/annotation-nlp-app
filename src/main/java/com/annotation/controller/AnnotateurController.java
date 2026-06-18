@@ -28,12 +28,13 @@ public class AnnotateurController {
         return utilisateurService.findByLogin(auth.getName());
     }
 
-    // ---- Liste des tâches ----
+    // ---- Liste des tâches (regroupées par dataset, conforme UC6 de la maquette) ----
     @GetMapping("/taches")
     public String listeTaches(Authentication auth, Model model) {
         Utilisateur annotateur = getConnecte(auth);
         List<Tache> taches = annotationService.findTachesParAnnotateur(annotateur);
         model.addAttribute("taches", taches);
+        model.addAttribute("tachesParDataset", annotationService.getTachesParDataset(annotateur));
         model.addAttribute("stats", annotationService.getStatsAnnotateur(annotateur));
         return "annotateur/taches";
     }

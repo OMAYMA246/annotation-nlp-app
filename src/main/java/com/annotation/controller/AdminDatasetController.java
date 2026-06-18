@@ -6,6 +6,7 @@ import com.annotation.service.DatasetService;
 import com.annotation.service.ExportService;
 import com.annotation.service.UtilisateurService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -47,9 +49,10 @@ public class AdminDatasetController {
             @RequestParam String classes,
             @RequestParam int nombreTextesParExemple,
             @RequestParam MultipartFile fichier,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateLimite,
             RedirectAttributes ra) {
         try {
-            datasetService.creerDataset(nom, description, classes, nombreTextesParExemple, fichier);
+            datasetService.creerDataset(nom, description, classes, nombreTextesParExemple, fichier, dateLimite);
             ra.addFlashAttribute("success", "Dataset créé avec succès !");
         } catch (Exception e) {
             ra.addFlashAttribute("error", "Erreur lors de la création : " + e.getMessage());

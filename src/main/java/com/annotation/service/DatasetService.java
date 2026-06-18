@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -42,11 +43,13 @@ public class DatasetService {
      */
     @Transactional
     public Dataset creerDataset(String nom, String description, String classesStr,
-                                 int nombreTextesParExemple, MultipartFile fichier) throws Exception {
+                                 int nombreTextesParExemple, MultipartFile fichier,
+                                 LocalDate dateLimite) throws Exception {
         Dataset dataset = Dataset.builder()
             .nomDataset(nom)
             .description(description)
             .nombreTextesParExemple(nombreTextesParExemple)
+            .dateLimite(dateLimite)
             .build();
 
         // Ajouter les classes possibles

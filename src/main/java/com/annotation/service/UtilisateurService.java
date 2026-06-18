@@ -9,12 +9,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class UtilisateurService {
+
+    private static final String CARACTERES_MDP =
+        "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+    private static final int LONGUEUR_MDP = 10;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     private final UtilisateurRepository utilisateurRepository;
     private final RoleRepository roleRepository;
@@ -34,23 +40,43 @@ public class UtilisateurService {
             .orElseThrow(() -> new RuntimeException("Utilisateur introuvable: " + login));
     }
 
+    /**
+     * Génère un mot de passe aléatoire lisible (sans caractères ambigus comme 0/O, 1/l/I).
+     */
+    private String genererMotDePasse() {
+        StringBuilder sb = new StringBuilder(LONGUEUR_MDP);
+        for (int i = 0; i < LONGUEUR_MDP; i++) {
+            sb.append(CARACTERES_MDP.charAt(RANDOM.nextInt(CARACTERES_MDP.length())));
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Crée un annotateur avec un mot de passe généré automatiquement.
+     * Retourne le mot de passe en clair (uniquement disponible à cet instant,
+     * pour affichage à l'administrateur) via Utilisateur.motDePasseGenere (champ transitoire).
+     */
     @Transactional
-    public Utilisateur creerAnnotateur(String nom, String prenom, String login, String password) {
+    public ResultatCreationAnnotateur creerAnnotateur(String nom, String prenom, String login) {
         if (utilisateurRepository.existsByLogin(login)) {
             throw new RuntimeException("Login déjà utilisé: " + login);
         }
         Role role = roleRepository.findByNomRole("ANNOTATOR_ROLE")
             .orElseThrow(() -> new RuntimeException("Rôle ANNOTATOR_ROLE introuvable"));
 
+        String motDePasseClair = genererMotDePasse();
+
         Utilisateur u = Utilisateur.builder()
             .nom(nom)
             .prenom(prenom)
             .login(login)
-            .password(passwordEncoder.encode(password))
+            .password(passwordEncoder.encode(motDePasseClair))
             .active(true)
             .roles(Set.of(role))
             .build();
-        return utilisateurRepository.save(u);
+        u = utilisateurRepository.save(u);
+
+        return new ResultatCreationAnnotateur(u, motDePasseClair);
     }
 
     @Transactional
@@ -67,13 +93,20 @@ public class UtilisateurService {
 
     @Transactional
     public void supprimerAnnotateur(Long id) {
-        utilisateurRepository.deleteById(id);
+        Utilisateur u = findById(id);
+        u.setActive(false); // suppression logique
+        utilisateurRepository.save(u);
     }
-
     @Transactional
     public void toggleActive(Long id) {
         Utilisateur u = findById(id);
         u.setActive(!u.isActive());
         utilisateurRepository.save(u);
     }
+
+    /**
+     * Petit conteneur pour renvoyer à la fois l'utilisateur créé
+     * et son mot de passe en clair (à n'afficher qu'une seule fois).
+     */
+    public record ResultatCreationAnnotateur(Utilisateur utilisateur, String motDePasseClair) {}
 }
