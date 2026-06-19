@@ -80,7 +80,7 @@ public class AnnotateurController {
         return "annotateur/annoter";
     }
 
-    @PostMapping("/annoter/{exempleId}")
+        @PostMapping("/annoter/{exempleId}")
     public String sauvegarderAnnotation(
             @PathVariable Long exempleId,
             @RequestParam String classeChoisie,
@@ -95,15 +95,14 @@ public class AnnotateurController {
         annotationService.annoter(exemple, annotateur, classeChoisie);
 
         if (suivant) {
-            // Passer à la prochaine tâche non terminée
             List<Tache> restantes = annotationService.findTachesNonTerminees(annotateur);
             if (!restantes.isEmpty()) {
                 return "redirect:/annotateur/annoter/" + restantes.get(0).getExemple().getId();
             }
-            ra.addFlashAttribute("success", "Toutes vos tâches sont terminées ! 🎉");
-        } else {
-            ra.addFlashAttribute("success", "Annotation sauvegardée.");
+            ra.addFlashAttribute("success", "Toutes vos taches sont terminees !");
+            return "redirect:/annotateur/taches";
         }
-        return "redirect:/annotateur/taches";
+        ra.addFlashAttribute("success", "Annotation sauvegardee.");
+        return "redirect:/annotateur/annoter/" + exempleId;
     }
 }

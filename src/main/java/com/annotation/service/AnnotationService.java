@@ -164,7 +164,12 @@ public class AnnotationService {
 
             // Calculer entropie normalisée
             int nbClasses = dist.size();
-            if (nbClasses <= 1) continue;
+
+            // CAS 1 : toujours la même classe → entropie = 0 → spammeur évident
+            if (nbClasses == 1) {
+                suspects.add(entry.getKey());
+                continue;
+            }
 
             double entropie = 0;
             for (long count : dist.values()) {

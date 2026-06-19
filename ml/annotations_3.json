@@ -1,0 +1,163 @@
+[ {
+  "id" : 111,
+  "textes" : [ "Quels sont les horaires d'ouverture du magasin ?", "À quelle heure ferme la boutique le samedi ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:30:13.896933"
+}, {
+  "id" : 110,
+  "textes" : [ "Le football est le sport le plus populaire au monde.", "Le basketball est plus pratiqué que le football en Asie." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:30:36.968821"
+}, {
+  "id" : 124,
+  "textes" : [ "Les abeilles jouent un rôle crucial dans la pollinisation.", "Sans les abeilles, de nombreuses plantes ne pourraient pas se reproduire." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:30:44.840774"
+}, {
+  "id" : 109,
+  "textes" : [ "Comment contacter le service client ?", "Quelles sont les coordonnées du support technique ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:30:50.784468"
+}, {
+  "id" : 123,
+  "textes" : [ "Comment activer le mode sombre dans l'application ?", "Est-ce qu'il y a une option pour changer le thème de l'interface ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:30:57.195206"
+}, {
+  "id" : 117,
+  "textes" : [ "Puis-je modifier mon adresse de livraison ?", "Est-il possible de changer le lieu de réception de ma commande ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:31:03.127579"
+}, {
+  "id" : 129,
+  "textes" : [ "Comment partager un document avec un collègue ?", "Quelle est la façon d'envoyer un fichier à quelqu'un d'autre ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:31:08.354984"
+}, {
+  "id" : 132,
+  "textes" : [ "Leonardo da Vinci a peint la Joconde.", "Michel-Ange a sculpté le David à Florence." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:31:16.494241"
+}, {
+  "id" : 107,
+  "textes" : [ "Je voudrais annuler ma commande.", "Comment procéder pour rembourser un achat ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:31:22.916882"
+}, {
+  "id" : 101,
+  "textes" : [ "Comment puis-je réinitialiser mon mot de passe ?", "Quelle est la procédure pour changer son mot de passe ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:31:30.673495"
+}, {
+  "id" : 119,
+  "textes" : [ "Comment supprimer mon compte sur cette plateforme ?", "Quelle est la procédure pour désactiver définitivement mon profil ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:31:35.809325"
+}, {
+  "id" : 116,
+  "textes" : [ "Le Maroc se situe en Afrique du Nord.", "Le Maroc est un pays d'Afrique subsaharienne." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:48:59.993599"
+}, {
+  "id" : 122,
+  "textes" : [ "Isaac Newton a découvert la loi de la gravitation.", "Albert Einstein a développé la théorie de la relativité." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:06.294562"
+}, {
+  "id" : 105,
+  "textes" : [ "Quel est le prix de cet article ?", "Combien coûte ce produit ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:12.924776"
+}, {
+  "id" : 133,
+  "textes" : [ "Puis-je utiliser l'application sans connexion internet ?", "Est-ce que ce service fonctionne en mode hors ligne ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:20.581046"
+}, {
+  "id" : 131,
+  "textes" : [ "Mon abonnement a été prélevé deux fois ce mois.", "J'ai été facturé en double sur ma carte bancaire." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:27.403480"
+}, {
+  "id" : 135,
+  "textes" : [ "Je souhaite changer mon adresse email.", "Comment mettre à jour mes informations de contact ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:33.294799"
+}, {
+  "id" : 125,
+  "textes" : [ "Je voudrais retourner un article défectueux.", "Comment obtenir un remboursement pour un produit endommagé ?" ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:39.312166"
+}, {
+  "id" : 121,
+  "textes" : [ "Mon paiement a été refusé lors du checkout.", "La transaction n'a pas pu être finalisée lors du paiement." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:45.813112"
+}, {
+  "id" : 106,
+  "textes" : [ "Paris est la capitale de la France.", "La tour Eiffel se trouve à Berlin." ],
+  "classe" : "not similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:04:13.342099"
+}, {
+  "id" : 128,
+  "textes" : [ "William Shakespeare est l'auteur de Roméo et Juliette.", "Molière est considéré comme le plus grand auteur de théâtre français." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:49:58.088023"
+}, {
+  "id" : 118,
+  "textes" : [ "Les dauphins sont des mammifères marins intelligents.", "Les requins sont les prédateurs les plus redoutés des océans." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T17:50:03.361771"
+}, {
+  "id" : 134,
+  "textes" : [ "Le chocolat est fabriqué à partir de fèves de cacao.", "Le café est produit à partir de grains torréfiés." ],
+  "classe" : "not similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T21:56:37.347291"
+}, {
+  "id" : 138,
+  "textes" : [ "Les baleines bleues sont les plus grands animaux de la planète.", "Les éléphants sont les plus grands mammifères terrestres." ],
+  "classe" : "similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:03:11.416619"
+}, {
+  "id" : 130,
+  "textes" : [ "Le vélo est un moyen de transport écologique.", "La voiture électrique contribue à réduire la pollution urbaine." ],
+  "classe" : "not similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:03:32.323090"
+}, {
+  "id" : 115,
+  "textes" : [ "Ma commande n'est pas encore arrivée.", "Je n'ai toujours pas reçu mon colis après 10 jours." ],
+  "classe" : "not similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:03:53.495527"
+}, {
+  "id" : 136,
+  "textes" : [ "La Révolution française a eu lieu en 1789.", "La Seconde Guerre mondiale s'est terminée en 1945." ],
+  "classe" : "not similaire",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:04:04.019245"
+} ]

@@ -1,0 +1,41 @@
+{
+  "dataset_id": "3",
+  "timestamp": "2026-06-18T22:12:17.325589",
+  "status": "success",
+  "metrics": {
+    "accuracy": 1.0,
+    "f1_score": 1.0,
+    "train_size": 21,
+    "test_size": 6,
+    "classes": [
+      "not similaire",
+      "similaire"
+    ],
+    "confusion_matrix": [
+      [
+        6
+      ]
+    ],
+    "classification_report": {
+      "similaire": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      }
+    }
+  }
+}

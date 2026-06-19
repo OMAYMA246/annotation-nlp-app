@@ -25,6 +25,7 @@ public class DatasetService {
     private final ExempleRepository exempleRepository;
     private final UtilisateurRepository utilisateurRepository;
     private final TacheRepository tacheRepository;
+    private final AnnotationRepository annotationRepository;
     private final ObjectMapper objectMapper;
 
     public List<Dataset> findAll() {
@@ -219,6 +220,14 @@ public class DatasetService {
 
     @Transactional
     public void supprimerDataset(Long id) {
-        datasetRepository.deleteById(id);
+        Dataset dataset = findById(id);
+        List<Tache> taches = tacheRepository.findByDataset(dataset);
+        tacheRepository.deleteAll(taches);
+        List<Exemple> exemples = exempleRepository.findByDataset(dataset);
+        for (Exemple ex : exemples) {
+            annotationRepository.deleteAll(annotationRepository.findByExemple(ex));
+        }
+        exempleRepository.deleteAll(exemples);
+        datasetRepository.delete(dataset);
     }
 }

@@ -1,0 +1,253 @@
+[ {
+  "id" : 231,
+  "textes" : [ "هذا المنتج رائع جداً، أنصح به الجميع بشدة!" ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:21:44.728175"
+}, {
+  "id" : 231,
+  "textes" : [ "هذا المنتج رائع جداً، أنصح به الجميع بشدة!" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:25.944539"
+}, {
+  "id" : 232,
+  "textes" : [ "خدمة سيئة للغاية، لن أعود إلى هذا المكان أبداً." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:29:42.649509"
+}, {
+  "id" : 233,
+  "textes" : [ "الفندق نظيف ومريح والموظفون محترمون جداً." ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:22:38.015555"
+}, {
+  "id" : 233,
+  "textes" : [ "الفندق نظيف ومريح والموظفون محترمون جداً." ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:04.350750"
+}, {
+  "id" : 234,
+  "textes" : [ "الطلب وصل متأخراً والمنتج كان تالفاً للأسف." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:42.087809"
+}, {
+  "id" : 235,
+  "textes" : [ "تجربة ممتازة، سأوصي أصدقائي بالتأكيد بهذه الخدمة." ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:29:56.918553"
+}, {
+  "id" : 236,
+  "textes" : [ "أسوأ تجربة في حياتي، لا أنصح أحداً بهذا المكان." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:30:16.650045"
+}, {
+  "id" : 237,
+  "textes" : [ "الطعام كان لذيذاً جداً والأسعار معقولة جداً." ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:22:21.809488"
+}, {
+  "id" : 237,
+  "textes" : [ "الطعام كان لذيذاً جداً والأسعار معقولة جداً." ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:54.161107"
+}, {
+  "id" : 238,
+  "textes" : [ "المنتج لا يعمل كما هو موضح في الوصف، خيبة أمل." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:20:53.424867"
+}, {
+  "id" : 238,
+  "textes" : [ "المنتج لا يعمل كما هو موضح في الوصف، خيبة أمل." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:03.555192"
+}, {
+  "id" : 239,
+  "textes" : [ "شكراً على الخدمة الممتازة والتوصيل السريع!" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:29:49.524421"
+}, {
+  "id" : 240,
+  "textes" : [ "جودة رديئة جداً مقابل السعر المرتفع المطلوب." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:22:31.693688"
+}, {
+  "id" : 240,
+  "textes" : [ "جودة رديئة جداً مقابل السعر المرتفع المطلوب." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:59.756450"
+}, {
+  "id" : 241,
+  "textes" : [ "Ce produit a dépassé toutes mes attentes, vraiment excellent !" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:50.804624"
+}, {
+  "id" : 242,
+  "textes" : [ "Je suis très insatisfait de cet achat, qualité médiocre." ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:20:41.118252"
+}, {
+  "id" : 242,
+  "textes" : [ "Je suis très insatisfait de cet achat, qualité médiocre." ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:25:57.492228"
+}, {
+  "id" : 243,
+  "textes" : [ "Livraison ultra rapide et produit conforme à la description." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T23:07:54.847264"
+}, {
+  "id" : 244,
+  "textes" : [ "Service après-vente inexistant, impossible de les joindre." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:21:26.460132"
+}, {
+  "id" : 244,
+  "textes" : [ "Service après-vente inexistant, impossible de les joindre." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:10.167526"
+}, {
+  "id" : 245,
+  "textes" : [ "Incroyable rapport qualité-prix, je recommande à 100% !" ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:21:51.223267"
+}, {
+  "id" : 245,
+  "textes" : [ "Incroyable rapport qualité-prix, je recommande à 100% !" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:32.154541"
+}, {
+  "id" : 246,
+  "textes" : [ "Arnaque pure et simple, le produit ne fonctionne pas du tout." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:35.955760"
+}, {
+  "id" : 247,
+  "textes" : [ "Personnel très sympathique et professionnel, merci !" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:29:36.209916"
+}, {
+  "id" : 248,
+  "textes" : [ "Très déçu, l'application est pleine de bugs irritants." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:30:38.278152"
+}, {
+  "id" : 249,
+  "textes" : [ "Expérience formidable, je reviendrai sans hésitation." ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:29.865026"
+}, {
+  "id" : 250,
+  "textes" : [ "Pire service client de ma vie, aucune solution proposée." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:18.791004"
+}, {
+  "id" : 252,
+  "textes" : [ "Terrible experience, the staff was rude and unhelpful." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:22:07.132267"
+}, {
+  "id" : 252,
+  "textes" : [ "Terrible experience, the staff was rude and unhelpful." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:43.781076"
+}, {
+  "id" : 253,
+  "textes" : [ "Fast shipping and excellent packaging, very satisfied!" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:30:23.517672"
+}, {
+  "id" : 254,
+  "textes" : [ "Complete waste of money, nothing works as advertised." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T23:34:52.707107"
+}, {
+  "id" : 255,
+  "textes" : [ "Amazing customer support, they solved my issue immediately!" ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:22:13.598941"
+}, {
+  "id" : 255,
+  "textes" : [ "Amazing customer support, they solved my issue immediately!" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:49.034461"
+}, {
+  "id" : 256,
+  "textes" : [ "Disappointed with the quality, expected much better for this price." ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:21:34.194792"
+}, {
+  "id" : 256,
+  "textes" : [ "Disappointed with the quality, expected much better for this price." ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:21.022716"
+}, {
+  "id" : 257,
+  "textes" : [ "Best purchase I've made this year, highly recommend it!" ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T23:08:28.739579"
+}, {
+  "id" : 258,
+  "textes" : [ "Absolutely horrible, the product broke after just one use." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T23:41:21.738661"
+}, {
+  "id" : 258,
+  "textes" : [ "Absolutely horrible, the product broke after just one use." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:11.010222"
+}, {
+  "id" : 259,
+  "textes" : [ "Super friendly staff and great atmosphere, will come back!" ],
+  "classe" : "positive",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:27:23.541605"
+}, {
+  "id" : 260,
+  "textes" : [ "Worst online shopping experience ever, avoid this store." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T22:21:58.138274"
+}, {
+  "id" : 260,
+  "textes" : [ "Worst online shopping experience ever, avoid this store." ],
+  "classe" : "negative",
+  "annotateur" : "user2",
+  "date_annotation" : "2026-06-18T22:26:38.225737"
+} ]

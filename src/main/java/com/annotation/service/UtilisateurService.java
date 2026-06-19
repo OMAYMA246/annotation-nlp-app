@@ -43,6 +43,14 @@ public class UtilisateurService {
     /**
      * Génère un mot de passe aléatoire lisible (sans caractères ambigus comme 0/O, 1/l/I).
      */
+    private String genererLogin(String nom, String prenom) {
+        String base = (prenom.toLowerCase() + "." + nom.toLowerCase()).replaceAll("[^a-z0-9.]", "");
+        String login = base;
+        int i = 1;
+        while (utilisateurRepository.existsByLogin(login)) { login = base + i++; }
+        return login;
+    }
+
     private String genererMotDePasse() {
         StringBuilder sb = new StringBuilder(LONGUEUR_MDP);
         for (int i = 0; i < LONGUEUR_MDP; i++) {
@@ -57,7 +65,8 @@ public class UtilisateurService {
      * pour affichage à l'administrateur) via Utilisateur.motDePasseGenere (champ transitoire).
      */
     @Transactional
-    public ResultatCreationAnnotateur creerAnnotateur(String nom, String prenom, String login) {
+    public ResultatCreationAnnotateur creerAnnotateur(String nom, String prenom) {
+        String login = genererLogin(nom, prenom);
         if (utilisateurRepository.existsByLogin(login)) {
             throw new RuntimeException("Login déjà utilisé: " + login);
         }
@@ -110,3 +119,5 @@ public class UtilisateurService {
      */
     public record ResultatCreationAnnotateur(Utilisateur utilisateur, String motDePasseClair) {}
 }
+
+

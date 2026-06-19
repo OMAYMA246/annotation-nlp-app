@@ -25,8 +25,9 @@
                     <input type="text" name="prenom" class="form-control" required/>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-semibold">Login *</label>
-                    <input type="text" name="login" class="form-control" required/>
+                    <label class="form-label fw-semibold">Login (généré automatiquement)</label>
+                    <input type="text" id="loginField" name="login" class="form-control bg-light" readonly/>
+                    <small class="text-muted">Format : prenom.nom</small>
                 </div>
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary px-4">CrÃ©er</button>
@@ -36,6 +37,16 @@
         </div>
     </div>
 </div>
+<script>
+function genererLogin() {
+    const nom = document.querySelector("[name=nom]").value.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const prenom = document.querySelector("[name=prenom]").value.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (prenom && nom) document.getElementById("loginField").value = prenom + "." + nom;
+}
+document.querySelector("[name=nom]").addEventListener("input", genererLogin);
+document.querySelector("[name=prenom]").addEventListener("input", genererLogin);
+</script>
 <footer th:replace="~{fragments/layout :: scripts}"></footer>
 </body>
 </html>
+

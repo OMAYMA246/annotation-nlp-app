@@ -1,4 +1,4 @@
-﻿package com.annotation.service;
+package com.annotation.service;
 import com.annotation.model.*;
 import com.annotation.repository.ModelEntrainementRepository;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,8 +16,8 @@ public class MLService {
     private final ModelEntrainementRepository modelRepo;
     private final ExportService exportService;
     private final ObjectMapper objectMapper;
-    private static final String WORK_DIR  = "/app/ml/";
-    private static final String MODEL_DIR = "/app/ml/models/";
+    private static final String WORK_DIR  = System.getProperty("user.dir") + "/ml/";
+    private static final String MODEL_DIR = System.getProperty("user.dir") + "/ml/models/";
 
     public List<ModelEntrainement> findByDataset(Dataset dataset) {
         return modelRepo.findByDatasetOrderByDateEntrainementDesc(dataset);
@@ -36,7 +36,7 @@ public class MLService {
         Thread thread = new Thread(() -> {
             try {
                 ProcessBuilder pb = new ProcessBuilder(
-                    "python3", WORK_DIR + "train.py",
+                    "python", WORK_DIR + "train.py",
                     "--input", annotationsPath,
                     "--output", MODEL_DIR,
                     "--dataset-id", datasetId);
@@ -95,7 +95,7 @@ public class MLService {
 
     public String predire(Dataset dataset, String texte) throws Exception {
         ProcessBuilder pb = new ProcessBuilder(
-            "python3", WORK_DIR + "predict.py",
+            "python", WORK_DIR + "predict.py",
             "--model", MODEL_DIR,
             "--dataset-id", String.valueOf(dataset.getId()),
             "--text", texte);

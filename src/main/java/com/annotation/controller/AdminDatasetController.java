@@ -32,7 +32,16 @@ public class AdminDatasetController {
     // ---- Liste des datasets ----
     @GetMapping("/datasets")
     public String listeDatasets(Model model) {
-        model.addAttribute("datasets", datasetService.findAll());
+        List<Dataset> datasets = datasetService.findAll();
+        model.addAttribute("datasets", datasets);
+
+        // Calcul progression par dataset
+        java.util.Map<Long, Double> datasetsStats = new java.util.LinkedHashMap<>();
+        for (Dataset ds : datasets) {
+            java.util.Map<String, Object> stats = annotationService.getStatsDataset(ds);
+            datasetsStats.put(ds.getId(), (Double) stats.get("progression"));
+        }
+        model.addAttribute("datasetsStats", datasetsStats);
         return "admin/datasets/liste";
     }
 

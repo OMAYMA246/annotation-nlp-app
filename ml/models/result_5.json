@@ -1,0 +1,7 @@
+{
+  "dataset_id": "5",
+  "timestamp": "2026-06-18T22:24:32.087456",
+  "status": "error",
+  "metrics": {},
+  "error": "Pas assez d annotations (0). Minimum 4 requis."
+}

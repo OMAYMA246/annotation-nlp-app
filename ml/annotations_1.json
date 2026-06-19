@@ -1,0 +1,49 @@
+[ {
+  "id" : 4,
+  "textes" : [ "Produit de mauvaise qualité, il est tombé en panne après 3 jours." ],
+  "classe" : "positive,negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-16T18:22:18.382778"
+}, {
+  "id" : 13,
+  "textes" : [ "Je suis ravi de mon achat, la qualité est au rendez-vous pour ce prix." ],
+  "classe" : "positive,negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-16T18:22:25.532632"
+}, {
+  "id" : 9,
+  "textes" : [ "Vacances de rêve, plage magnifique et personnel aux petits soins." ],
+  "classe" : "positive,negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-16T18:22:55.279823"
+}, {
+  "id" : 7,
+  "textes" : [ "Application très intuitive et rapide, bravo à l'équipe de développement !" ],
+  "classe" : "positive,negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-17T22:57:01.356406"
+}, {
+  "id" : 2,
+  "textes" : [ "Service catastrophique, j'ai attendu 2 heures sans aucune aide." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-17T23:47:21.631050"
+}, {
+  "id" : 11,
+  "textes" : [ "Restaurant incroyable, les plats sont savoureux et la présentation soignée." ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-17T23:47:33.561310"
+}, {
+  "id" : 36,
+  "textes" : [ "Produit défectueux dès la réception, remboursement impossible à obtenir." ],
+  "classe" : "negative",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T00:27:10.956067"
+}, {
+  "id" : 1,
+  "textes" : [ "Ce film est absolument magnifique, je l'ai adoré du début à la fin !" ],
+  "classe" : "positive",
+  "annotateur" : "user1",
+  "date_annotation" : "2026-06-18T00:27:23.046230"
+} ]

@@ -1,4 +1,4 @@
-﻿package com.annotation.model;
+package com.annotation.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;

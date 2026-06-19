@@ -31,10 +31,9 @@ public class AdminAnnotateurController {
     public String creer(
             @RequestParam String nom,
             @RequestParam String prenom,
-            @RequestParam String login,
             RedirectAttributes ra) {
         try {
-            var resultat = utilisateurService.creerAnnotateur(nom, prenom, login);
+            var resultat = utilisateurService.creerAnnotateur(nom, prenom);
             ra.addFlashAttribute("success",
                 "Annotateur créé avec succès ! Identifiants — Login : " + resultat.utilisateur().getLogin()
                     + " / Mot de passe : " + resultat.motDePasseClair()
@@ -90,3 +89,4 @@ public class AdminAnnotateurController {
         return "admin/annotateurs/stats";
     }
 }
+
