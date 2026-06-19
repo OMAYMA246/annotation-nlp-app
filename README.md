@@ -11,7 +11,7 @@
 
 ---
 
-## Lancement avec Docker (recommandé)
+## Lancement avec Docker 
 
 ```bash
 # Construire et démarrer
@@ -31,7 +31,7 @@ http://localhost:8080
 # Compiler
 mvn clean package -DskipTests
 
-# Lancer (commande du prof)
+# Lancer 
 java -jar target/app.jar
 ```
 
